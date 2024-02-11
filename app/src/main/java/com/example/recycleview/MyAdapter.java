@@ -19,12 +19,12 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements Filterable {
 
     private List<CardItem> cardItemList;
-    private List<CardItem> cardItemListFull; // Full copy of original list for filtering
+    private List<CardItem> cardItemListFull;
     private Context context;
 
     public MyAdapter(List<CardItem> cardItemList, Context context) {
         this.cardItemList = cardItemList;
-        this.cardItemListFull = new ArrayList<>(cardItemList); // Create a copy of original list
+        this.cardItemListFull = new ArrayList<>(cardItemList);
         this.context = context;
     }
 
@@ -42,11 +42,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         holder.titleTextView.setText(cardItem.getTitle());
         holder.descriptionTextView.setText(cardItem.getDescription());
 
-        // Set OnClickListener for the item view
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Display a custom Toast message with information about the clicked record
+
                 LayoutInflater inflater = LayoutInflater.from(context);
                 View toastLayout = inflater.inflate(R.layout.toast_layout, null);
 
