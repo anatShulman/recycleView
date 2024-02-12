@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements Filterable {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<CardItem> cardItemList;
     private List<CardItem> cardItemListFull;
@@ -78,38 +78,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         }
     }
 
-    @Override
-    public Filter getFilter() {
-        return cardFilter;
-    }
-
-    private Filter cardFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<CardItem> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(cardItemListFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                for (CardItem item : cardItemListFull) {
-                    if (item.getTitle().toLowerCase().contains(filterPattern) || item.getDescription().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            cardItemList.clear();
-            cardItemList.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
-}
+};
